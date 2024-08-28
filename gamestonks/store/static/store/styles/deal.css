@@ -1,0 +1,26 @@
+h1 {
+    text-align: center;
+}
+
+img {
+    margin: auto;
+    display: block;
+    max-width: 25rem;
+    max-height: 25rem;
+}
+
+.col p {
+    vertical-align: middle;
+}
+
+.tweet {
+    cursor: pointer;
+    display: inline;
+    max-width: 4rem;
+    max-height: 4rem;
+}
+
+#video iframe {
+    margin: auto;
+    display: block;
+}

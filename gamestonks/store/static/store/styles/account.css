@@ -1,0 +1,10 @@
+h1 {
+    text-align: center;
+}
+
+img {
+    margin: auto;
+    display: block;
+    max-width: 10rem;
+    max-height: 10rem;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GameStonks</title>
+        <link rel="icon" type="image/png" href="{% static 'store/media/gs.ico' %}">
+        <link rel="stylesheet" href="{% static 'store/styles/main.css' %}">
+        <link rel="stylesheet" href="{% static 'store/styles/deal.css' %}">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Orbitron">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{% static 'store/scripts/navbar.js' %}" async></script>
+        <script src="{% static 'store/scripts/deal.js' %}" async></script>
+    </head>
+    <body>
+        <header>
+            <img class="menu-icon" src="{% static 'store/media/menu.png' %}" onclick="openNav()">
+            <a href="{% url 'index' %}" class="logo">GameStonks</a>
+        </header>
+        <div id="my-sidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="{% url 'sBn' %}">Búsqueda</a>
+            <!--<a href="">Tiendas</a>-->
+            <!--<a href="">Ofertas</a>-->
+            <a href="{% url 'analisis' %}">Analisis tiendas</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'account' %}">Account</a>
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'register' %}">Registration</a>
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+        {% if deal_info %}
+        <div class="row">
+        <div class="col">
+            <h1>{{deal_info.gameInfo.name}}</h1>
+        </div>
+        <div class="col">
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src={{deal_info.gameInfo.thumb}}>
+                <br>
+                <div id="video"></div>
+            </div>
+            <div class="col">
+                <p>RETAIL PRICE: {{deal_info.gameInfo.retailPrice}}</p>
+                <p>PRECIO MEDIO (propio análisis): {{precio_medio}}</p>
+                <p>SALE PRICE: {{deal_info.gameInfo.salePrice}}</p>
+                <p>LINK COMPRA: <a href="https://www.cheapshark.com/redirect?dealID={{deal_id}}">CLICK HERE</a></p>
+                {% if user.is_authenticated %}
+                <h2>Create an alert for new deals!</h2>
+                <input type="text" placeholder="Price" aria-label="price" id="price">
+                <button type="button" id="btn" onclick="add_alert('{{user.email}}', '{{deal_info.gameInfo.gameID}}')">Add alert</button>
+                {% endif %}
+            </div>
+        </div>
+        <br>
+        {% if game_info %}
+        {{game_info.detailed_description | safe }}
+        {{gme_info.pc_requirements.minimum | safe }}
+        {{game_info.pc_requirements.recommended | safe}}
+        {% else %}
+        <p> No info about the game is available. </p>
+        {% endif %}
+        {% else %}
+        <p>No info about this deal is available.</p>
+        {% endif %}
+    </body>
+</html>

@@ -1,0 +1,84 @@
+body {
+    color: white !important;
+    font-family: 'Orbitron' !important;
+    background-image: url('../media/background.png');
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+header {
+    background-color: white;
+    padding: 15px 10px;
+    overflow: hidden;
+    position: static;
+    opacity: 0.8;
+}
+
+header a.logo {
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 25px;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+header a:hover {
+    background-color: whitesmoke;
+}
+
+.menu-icon {
+    float: left;
+    cursor: pointer;
+    max-width: 1.5rem;
+    position: relative;
+}
+
+.sidenav {
+    top: 0;
+    left: 0;
+    width: 0;
+    z-index: 1;
+    height: 100%;
+    position: fixed;
+    transition: 0.5s;
+    padding-top: 60px;
+    overflow-x: hidden;
+    background-color: white;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: whitesmoke;
+}
+
+.sidenav .closebtn {
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    position: absolute;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
